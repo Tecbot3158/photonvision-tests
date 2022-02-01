@@ -18,13 +18,13 @@ public class Tecbotcamera extends SubsystemBase {
 
   PhotonCamera pepethefrog;
   PhotonPipelineResult peperesult;
+
   /** Creates a new Photonvision. */
   public Tecbotcamera() {
 
 
   pepethefrog= new PhotonCamera("Pepe.the.frog");
-  
-
+   
   }
 
   @Override
@@ -33,18 +33,17 @@ public class Tecbotcamera extends SubsystemBase {
 
     double yaw = 0;
     double pitch = 0;
-
+    double area = 0;
     boolean hasTargets = pepethefrog.getLatestResult().hasTargets();
 
     if(hasTargets == true){
       peperesult = pepethefrog.getLatestResult();
       PhotonTrackedTarget target = peperesult.getBestTarget();
-
-
+      
       yaw = target.getYaw();
       pitch = target.getPitch();
-
-
+      area = target.getArea();
+  
       
     }
     
@@ -54,5 +53,6 @@ public class Tecbotcamera extends SubsystemBase {
     SmartDashboard.putBoolean("targets", hasTargets);
     SmartDashboard.putNumber("yaw", yaw);
     SmartDashboard.putNumber("pitch", pitch);
+    SmartDashboard.putNumber("area", area);
   }
 }
